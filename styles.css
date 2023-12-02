@@ -1,0 +1,11 @@
+* {
+    font-family: helvetica;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 5% 0 5%;
+}

@@ -8,6 +8,7 @@
     <h1>Dev Tools</h1>
     <?php
     require_once __DIR__ . '/config.php';
+    echo " <link rel='stylesheet' href='/../../../styles.css'>";
 
     //Conectar con la base de datos
     $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
