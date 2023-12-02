@@ -29,15 +29,8 @@ for ($i = 0; $i < $numero_filas; $i++) {
     for ($j = 0; $j < $numero_columnas; $j++) {
         echo "<td>" . $fila[$j] . "</td>";
     }
-    echo "<td><form action='validar_startup.php' method='post'><input type='hidden' name='idStartup' value='" . $fila[0] . "'><input type='submit' value='Validar'></form></td>";
+    echo "<td><a href='form_validar_startup.html?idStartup=" . $fila[0] . "'>Validar</a></td>";
 
     echo "</tr>";
 }
 echo "</table>";
-
-function redirectValidarStartup($idStartup)
-{
-    $_SESSION['idStartup'] = $idStartup;
-    header("Location: validar_startup.php");
-    exit;
-}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Validar startup</h1>
+    <form action="validar_startup.php" method="post">
+        <!--Puede aceptar o rechazar-->
+        <input type="hidden" name="idStartup" id="idStartup">
+        <input type="submit" value="Aceptar" name="aceptar">
+        <input type="submit" value="Rechazar" name="rechazar">
+    </form>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const idStartup = params.get('idStartup');
+        document.getElementById('idStartup').value = idStartup;
+    </script>
+    
+</body>
+</html>
