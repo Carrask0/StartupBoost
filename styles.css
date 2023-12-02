@@ -1,6 +1,5 @@
 * {
     font-family: helvetica;
-
 }
 
 form {
@@ -8,4 +7,14 @@ form {
     flex-direction: column;
     width: 50%;
     margin: 0 5% 0 5%;
+}
+
+.listadoOpciones {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+.opcion {
+    margin: 0 0 4% 0;
+    font-size: large;
 }

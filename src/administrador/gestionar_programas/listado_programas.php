@@ -31,7 +31,7 @@ for ($i = 0; $i < $numero_filas; $i++) {
     for ($j = 0; $j < $numero_columnas; $j++) {
         echo "<td>" . $fila[$j] . "</td>";
     }
-    echo "<td><a href='eliminarPrograma.php?idPrograma=" . $fila[0] . "'>Eliminar</a></td>";
+    echo "<td><a href='eliminar_programa.php?idPrograma=" . $fila[0] . "'>Eliminar</a></td>";
     //Pass all parameters in the URL
     $parameters = array(
         'idPrograma' => $fila[0],
