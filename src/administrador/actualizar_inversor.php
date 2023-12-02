@@ -11,27 +11,22 @@ $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
 
 
 //Recoger los datos del formulario
+$idInversor = $_POST['idInversor'];
 $nombreInversor = $_POST['nombreInversor'];
 $correo = $_POST['correo'];
 $tlf = $_POST['tlf'];
 
-
-//Generar un id para el inversor (numerico)
-$consulta = "SELECT MAX(idInversor) FROM Inversor";
+//Actualizar los datos en la base de datos
+$consulta = "UPDATE Inversor SET nombreInversor = '$nombreInversor', correo = '$correo', tlf = '$tlf' WHERE idInversor = '$idInversor'";
 $resultado = mysqli_query($conexion, $consulta);
-$fila = mysqli_fetch_array($resultado);
-$idInversor = $fila[0] + 1;
 
-
-//Insertar los datos en la base de datos
-$consulta = "INSERT INTO Inversor (idInversor, nombreInversor, correo, tlf) VALUES ('$idInversor', '$nombreInversor', '$correo', '$tlf')";
-$resultado = mysqli_query($conexion, $consulta);
 
 if ($resultado) {
-    echo "Se ha insertado correctamente";
+    echo "Se han actualizado los datos correctamente";
+    print_r($_POST);
     redirectListadoInversores();
 } else {
-    echo "No se ha podido insertar";
+    echo "No se ha podido actualizar";
 }
 
 //Redirigir a la página de listado de mentores
