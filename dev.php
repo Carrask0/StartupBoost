@@ -1,35 +1,66 @@
-<?php
-require_once __DIR__ . '/config.php';
+<html>
 
-//Conectar con la base de datos
-$conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
-    or die("No se ha podido conectar con la base de datos");
+<head>
+    <title>Dev Tools</title>
+</head>
 
-echo "Conexión con la base de datos establecida";
+<body>
+    <h1>Dev Tools</h1>
+    <?php
+    require_once __DIR__ . '/config.php';
 
-//Visualizar todas las tablas de la base de datos
-$consulta = "SHOW TABLES";
-$resultado = mysqli_query($conexion, $consulta);
+    //Conectar con la base de datos
+    $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
+        or die("No se ha podido conectar con la base de datos");
 
-echo "<br>Nombres tablas: <br>";
-while ($fila = mysqli_fetch_array($resultado)) {
-    echo $fila[0] . " - ";
-}
+    echo "Conexión con la base de datos establecida";
 
-// Tablas: Evento - Evento_Mentor - Inversion - Inversor - Inversor_Evento - Mentor - Programa - Programa_startup - Startup - Startup_Evento - Subvencion
-$nombresTablas = array("Evento", "Evento_Mentor", "Inversion", "Inversor", "Inversor_Evento", "Mentor", "Programa", "Programa_startup", "Startup", "Startup_Evento", "Subvencion");
-for ($i = 0; $i < count($nombresTablas); $i++) {
-    $consulta = "SELECT * FROM " . $nombresTablas[$i];
-    $resultado = mysqli_query($conexion, $consulta);
+    /*
+     
+        Visualizar todas las tablas de la base de datos
+    
+        Programa=@idPrograma+nombrePorgrama+tipo+descripcion+duración
+        Programa-startup=@idPrograma+@idStartup
+        Inversion=@idStartup+@idInversor+cantidad
+        Inversor=@idInversor+nombreInversor+correo+tlf
+        Evento=@idEvento+nombreEvento+tipo+descripcion+fechaIni+fechaFin+plazas+ubicacion+sala
+        StartUp=@idStartup+nombreStartup+descripcion+sector+estado+correo+tlf
+        Mentor=@idMentor+nombreMentor+especialidad+experiencia+correo+tlf
+        Subvencion=@idSubvencion+entSubvencionadora+estado+cantidad
+        Startup-Evento=@idStartup+@idEvento
+        Inversor-Evento=@idInversor + @idEvento
+        Mentor-Evento=@idEvento + @idMentor
+    
+    */
 
-    // Mostrar tablas
-    echo "<br><br>Tabla: " . $nombresTablas[$i] . "<br>";
-    echo "<table>";
-    while ($fila = mysqli_fetch_array($resultado)) {
-        echo "<tr>";
-        for ($j = 0; $j < count($fila) / 2; $j++) {
-            echo "<td>" . $fila[$j] . "</td>";
+    $nombresTablas = array("Evento", "Evento_Mentor", "Inversion", "Inversor", "Inversor_Evento", "Mentor", "Programa", "Programa_startup", "Startup", "Startup_Evento", "Subvencion");
+
+    foreach ($nombresTablas as $nombreTabla) {
+        $consulta = "SELECT * FROM $nombreTabla";
+        $resultado = mysqli_query($conexion, $consulta);
+        $numero_filas = mysqli_num_rows($resultado);
+        $numero_columnas = mysqli_num_fields($resultado);
+
+        echo "<h2>$nombreTabla</h2>";
+        echo "<table border='1'><tr>";
+        for ($i = 0; $i < $numero_columnas; $i++) {
+            $nombreColumna = mysqli_fetch_field_direct($resultado, $i)->name;
+            echo "<th>$nombreColumna</th>";
         }
         echo "</tr>";
+        for ($i = 0; $i < $numero_filas; $i++) {
+            $fila = mysqli_fetch_array($resultado);
+            echo "<tr>";
+            for ($j = 0; $j < $numero_columnas; $j++) {
+                echo "<td>" . $fila[$j] . "</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
     }
-}
+
+    ?>
+
+</body>
+
+</html>
