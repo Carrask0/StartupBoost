@@ -10,14 +10,14 @@ $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
 
 
 //Seleccionar todos los mentores
-$consulta = "SELECT * FROM Mentor";
+$consulta = "SELECT * FROM Inversor";
 $resultado = mysqli_query($conexion, $consulta);
 
-//Visualizar todos los mentores
+//Visualizar todos los inversores
 $numero_filas = mysqli_num_rows($resultado);
 $numero_columnas = mysqli_num_fields($resultado);
 
-echo "<h2>Mentores</h2>";
+echo "<h2>Inversores</h2>";
 echo "<table border='1'><tr>";
 for ($i = 0; $i < $numero_columnas; $i++) {
     $nombreColumna = mysqli_fetch_field_direct($resultado, $i)->name;
@@ -30,16 +30,16 @@ for ($i = 0; $i < $numero_filas; $i++) {
     for ($j = 0; $j < $numero_columnas; $j++) {
         echo "<td>" . $fila[$j] . "</td>";
     }
-    echo "<td><form action='eliminar_mentor.php' method='post'><input type='hidden' name='idMentor' value='" . $fila[0] . "'><input type='submit' value='Eliminar'></form></td>";
-    echo "<td><form action='form_actualizar_mentor.php' method='post'><input type='hidden' name='idMentor' value='" . $fila[0] . "'><input type='submit' value='Actualizar'></form></td>";
+    echo "<td><form action='eliminar_inversor.php' method='post'><input type='hidden' name='idInversor' value='" . $fila[0] . "'><input type='submit' value='Eliminar'></form></td>";
+    echo "<td><form action='form_actualizar_inversor.php' method='post'><input type='hidden' name='idInversor' value='" . $fila[0] . "'><input type='submit' value='Actualizar'></form></td>";
 
     echo "</tr>";
 }
 echo "</table>";
 
-function redirectEliminarMentor($idMentor)
+function redirectEliminarInversor($idInversor)
 {
-    $_SESSION['idMentor'] = $idMentor;
-    header("Location: eliminar_mentor.php");
+    $_SESSION['idInversor'] = $idInversor;
+    header("Location: eliminar_inversor.php");
     exit;
 }

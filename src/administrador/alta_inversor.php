@@ -11,35 +11,33 @@ $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
 
 
 //Recoger los datos del formulario
-$nombre = $_POST['nombre'];
-$especialidad = $_POST['especialidad'];
-$experiencia = $_POST['experiencia'];
+$nombreInversor = $_POST['nombreInversor'];
 $correo = $_POST['correo'];
-$telefono = $_POST['telefono'];
+$tlf = $_POST['tlf'];
 
 
-//Generar un id para el mentor (numerico)
-$consulta = "SELECT MAX(idMentor) FROM Mentor";
+//Generar un id para el inversor (numerico)
+$consulta = "SELECT MAX(idInversor) FROM Inversor";
 $resultado = mysqli_query($conexion, $consulta);
 $fila = mysqli_fetch_array($resultado);
-$idMentor = $fila[0] + 1;
+$idInversor = $fila[0] + 1;
 
 
 //Insertar los datos en la base de datos
-$consulta = "INSERT INTO Mentor (idMentor, nombreMentor, especialidad, experiencia, correo, tlf) VALUES ('$idMentor', '$nombre', '$especialidad', '$experiencia', '$correo', '$telefono')";
+$consulta = "INSERT INTO Inversor (idInversor, nombreInversor, correo, tlf) VALUES ('$idInversor', '$nombreInversor', '$correo', '$tlf')";
 $resultado = mysqli_query($conexion, $consulta);
 
 if ($resultado) {
     echo "Se ha insertado correctamente";
-    redirectListadoMentores();
+    redirectListadoInversores();
 } else {
     echo "No se ha podido insertar";
 }
 
 //Redirigir a la página de listado de mentores
-function redirectListadoMentores()
+function redirectListadoInversores()
 {
-    header("Location: listado_mentores.php");
+    header("Location: listado_inversores.php");
     exit;
 }
 

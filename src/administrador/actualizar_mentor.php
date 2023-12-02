@@ -11,29 +11,24 @@ $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
 
 
 //Recoger los datos del formulario
-$nombre = $_POST['nombre'];
+$idMentor = $_POST['idMentor'];
+$nombreMentor = $_POST['nombreMentor'];
 $especialidad = $_POST['especialidad'];
 $experiencia = $_POST['experiencia'];
 $correo = $_POST['correo'];
-$telefono = $_POST['telefono'];
+$tlf = $_POST['tlf'];
 
-
-//Generar un id para el mentor (numerico)
-$consulta = "SELECT MAX(idMentor) FROM Mentor";
+//Actualizar los datos en la base de datos
+$consulta = "UPDATE Mentor SET nombreMentor = '$nombreMentor', especialidad = '$especialidad', experiencia = '$experiencia', correo = '$correo', tlf = '$tlf' WHERE idMentor = '$idMentor'";
 $resultado = mysqli_query($conexion, $consulta);
-$fila = mysqli_fetch_array($resultado);
-$idMentor = $fila[0] + 1;
 
-
-//Insertar los datos en la base de datos
-$consulta = "INSERT INTO Mentor (idMentor, nombreMentor, especialidad, experiencia, correo, tlf) VALUES ('$idMentor', '$nombre', '$especialidad', '$experiencia', '$correo', '$telefono')";
-$resultado = mysqli_query($conexion, $consulta);
 
 if ($resultado) {
-    echo "Se ha insertado correctamente";
+    echo "Se han actualizado los datos correctamente";
+    //print_r($_POST);
     redirectListadoMentores();
 } else {
-    echo "No se ha podido insertar";
+    echo "No se ha podido actualizar";
 }
 
 //Redirigir a la página de listado de mentores
