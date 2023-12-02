@@ -38,30 +38,30 @@
         $row = mysqli_fetch_array($result);
 
         // print_r ($row); para comprobar que datos tengo en el array 
-        ?>
-            <form action="actualizar_mentor.php" method="post" id="formActualizarMentor"
-        display="flex"
-        >
+    ?>
+        <form action="actualizar_mentor.php" method="post" id="formActualizarMentor" display="flex">
         
-        <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre" value="<?php echo $row['nombreMentor']; ?>" required>
+            <label for="nombreMentor">Nombre</label>
+            <input type="text" name="nombreMentor" id="nombreMentor" value="<?php echo $row['nombreMentor']; ?>" required>
 
-        <label for="especialidad">Especialidad</label>
-        <input type="text" name="especialidad" id="especialidad" value="<?php echo $row['especialidad']; ?>" required>
+            <label for="especialidad">Especialidad</label>
+            <input type="text" name="especialidad" id="especialidad" value="<?php echo $row['especialidad']; ?>" required>
 
-        <label for="experiencia">Experiencia</label>
-        <input type="text" name="experiencia" id="experiencia" value="<?php echo $row['experiencia']; ?>" required>
+            <label for="experiencia">Experiencia</label>
+            <input type="text" name="experiencia" id="experiencia" value="<?php echo $row['experiencia']; ?>" required>
 
-        <label for="correo">Correo</label>
-        <input type="text" name="correo" id="correo" value="<?php echo $row['correo']; ?>" required>
+            <label for="correo">Correo</label>
+            <input type="text" name="correo" id="correo" value="<?php echo $row['correo']; ?>" required>
 
-        <label for="telefono">Teléfono</label>
-        <input type="text" name="telefono" id="telefono" value="<?php echo $row['tlf']; ?>" required>
+            <label for="tlf">Teléfono</label>
+            <input type="text" name="tlf" id="tlf" value="<?php echo $row['tlf']; ?>" required>
 
-        <input type="submit" value="Actualizar">
+            <input type="hidden" name="idMentor" value="<?php echo $row['idMentor']; ?>">
+
+            <input type="submit" value="Actualizar">
         
-    </form>
-        <?php
+        </form>
+    <?php
     }
     
         

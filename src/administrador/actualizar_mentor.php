@@ -12,14 +12,20 @@ $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
 
 //Recoger los datos del formulario
 $idMentor = $_POST['idMentor'];
+$nombreMentor = $_POST['nombreMentor'];
+$especialidad = $_POST['especialidad'];
+$experiencia = $_POST['experiencia'];
+$correo = $_POST['correo'];
+$tlf = $_POST['tlf'];
 
 //Actualizar los datos en la base de datos
-$consulta = "UPDATE Mentor SET nombre = '$nombre', especialidad = '$especialidad', experiencia = '$experiencia', correo = '$correo', telefono = '$telefono' WHERE idMentor = '$idMentor'";
+$consulta = "UPDATE Mentor SET nombreMentor = '$nombreMentor', especialidad = '$especialidad', experiencia = '$experiencia', correo = '$correo', tlf = '$tlf' WHERE idMentor = '$idMentor'";
 $resultado = mysqli_query($conexion, $consulta);
 
 
 if ($resultado) {
     echo "Se han actualizado los datos correctamente";
+    //print_r($_POST);
     redirectListadoMentores();
 } else {
     echo "No se ha podido actualizar";
