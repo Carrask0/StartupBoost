@@ -11,7 +11,7 @@ $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
 
 
 //Recoger los datos del formulario
-$idMentor = $_GET['idMentor'];
+$idMentor = $_POST['idMentor'];
 
 //Actualizar los datos en la base de datos
 $consulta = "UPDATE Mentor SET nombre = '$nombre', especialidad = '$especialidad', experiencia = '$experiencia', correo = '$correo', telefono = '$telefono' WHERE idMentor = '$idMentor'";

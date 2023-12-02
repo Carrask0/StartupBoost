@@ -24,14 +24,27 @@
 </head>
 <body>
     <h1>Actualizar datos mentor</h1>
+    <?php
+    if(isset($_POST['idMentor'])) {
+        session_start();
 
-    
-    <form action="actualizar_mentor.php" method="post" id="formActualizarMentor"
+        require_once __DIR__ . '/../../config.php';
+
+        $idMentor = $_POST['idMentor'];
+
+        $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME);
+        $query = "SELECT * FROM Mentor WHERE idMentor = '$idMentor'";
+        $result = mysqli_query($conexion, $query);
+        $row = mysqli_fetch_array($result);
+
+        // print_r ($row); para comprobar que datos tengo en el array 
+        ?>
+            <form action="actualizar_mentor.php" method="post" id="formActualizarMentor"
         display="flex"
         >
         
         <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre" value="<?php echo $row['nombre']; ?>" required>
+        <input type="text" name="nombre" id="nombre" value="<?php echo $row['nombreMentor']; ?>" required>
 
         <label for="especialidad">Especialidad</label>
         <input type="text" name="especialidad" id="especialidad" value="<?php echo $row['especialidad']; ?>" required>
@@ -43,11 +56,18 @@
         <input type="text" name="correo" id="correo" value="<?php echo $row['correo']; ?>" required>
 
         <label for="telefono">Teléfono</label>
-        <input type="text" name="telefono" id="telefono" value="<?php echo $row['telefono']; ?>" required>
+        <input type="text" name="telefono" id="telefono" value="<?php echo $row['tlf']; ?>" required>
 
         <input type="submit" value="Actualizar">
         
     </form>
+        <?php
+    }
+    
+        
+    ?>
+    
+
 
 </body>
 </html>
