@@ -9,8 +9,6 @@ require_once __DIR__ . '/../../../config.php';
 $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
     or die("No se ha podido conectar con la base de datos");
 
-echo "Conexión con la base de datos establecida <br>";
-
 //Recoger los datos del formulario
 $nombre = $_POST['nombre'];
 $sector = $_POST['sector'];
@@ -18,11 +16,6 @@ $descripcion = $_POST['descripcion'];
 $correo = $_POST['correo'];
 $telefono = $_POST['telefono'];
 $estado = "pendiente";
-
-//Generar un id para la startup numeric hash function
-//$idStartup = crc32($nombre);
-
-echo $idStartup . "<br>";
 
 //Comprobar que no exista ya una startup con ese nombre
 $consulta = "SELECT * FROM Startup WHERE nombreStartup = '$nombre'";

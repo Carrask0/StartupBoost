@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once __DIR__ . '/../../config.php';
+require_once __DIR__ . '/../../../config.php';
 
 //Conectar con la base de datos
 $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
@@ -10,14 +10,14 @@ $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
 
 
 //Seleccionar todos los mentores
-$consulta = "SELECT * FROM Inversor";
+$consulta = "SELECT * FROM Mentor";
 $resultado = mysqli_query($conexion, $consulta);
 
-//Visualizar todos los inversores
+//Visualizar todos los mentores
 $numero_filas = mysqli_num_rows($resultado);
 $numero_columnas = mysqli_num_fields($resultado);
 
-echo "<h2>Inversores</h2>";
+echo "<h2>Mentores</h2>";
 echo "<table border='1'><tr>";
 for ($i = 0; $i < $numero_columnas; $i++) {
     $nombreColumna = mysqli_fetch_field_direct($resultado, $i)->name;
@@ -30,16 +30,17 @@ for ($i = 0; $i < $numero_filas; $i++) {
     for ($j = 0; $j < $numero_columnas; $j++) {
         echo "<td>" . $fila[$j] . "</td>";
     }
-    echo "<td><form action='eliminar_inversor.php' method='post'><input type='hidden' name='idInversor' value='" . $fila[0] . "'><input type='submit' value='Eliminar'></form></td>";
-    echo "<td><form action='form_actualizar_inversor.php' method='post'><input type='hidden' name='idInversor' value='" . $fila[0] . "'><input type='submit' value='Actualizar'></form></td>";
-
+    echo "<td><a href='eliminar_mentor.php?idMentor=" . $fila[0] . "'>Eliminar</a></td>";
+    //Pass all parameters in the URL
+    $parameters = array(
+        'idMentor' => $fila[0],
+        'nombreMentor' => $fila[1],
+        'especialidad' => $fila[2],
+        'experiencia' => $fila[3],
+        'correo' => $fila[4],
+        'tlf' => $fila[5]
+    );
+    echo "<td><a href='form_actualizar_mentor.html?" . http_build_query($parameters) . "'>Actualizar</a></td>";
     echo "</tr>";
 }
 echo "</table>";
-
-function redirectEliminarInversor($idInversor)
-{
-    $_SESSION['idInversor'] = $idInversor;
-    header("Location: eliminar_inversor.php");
-    exit;
-}

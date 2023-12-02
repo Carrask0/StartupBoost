@@ -12,7 +12,7 @@ ERRORES;
     echo $mostrar_error;
 }
 
-require_once __DIR__ . '/../../config.php';
+require_once __DIR__ . '/../../../config.php';
 
 //Conectar con la base de datos
 $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
@@ -38,4 +38,4 @@ if (!$resultado) {
 
 
 //Redirigir a opciones de administrador
-header("Location: ./opciones_administrador.html");
+header("Location: ../opciones_administrador.html");
