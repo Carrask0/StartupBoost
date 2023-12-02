@@ -8,21 +8,19 @@ require_once __DIR__ . '/../../../config.php';
 $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
     or die("No se ha podido conectar con la base de datos");
 
-
 //Recoger los datos del formulario
-$nombre = $_POST['nombreMentor'];
-$especialidad = $_POST['especialidad'];
-$experiencia = $_POST['experiencia'];
-$correo = $_POST['correo'];
-$telefono = $_POST['tlf'];
+$nombrePrograma = $_POST['nombrePrograma'];
+$tipo = $_POST['tipo'];
+$descripcion = $_POST['descripcion'];
+$duracion = $_POST['duracion'];
 
 //Insertar los datos en la base de datos
-$consulta = "INSERT INTO Mentor (nombreMentor, especialidad, experiencia, correo, tlf) VALUES ('$nombre', '$especialidad', '$experiencia', '$correo', '$telefono')";
+$consulta = "INSERT INTO Programa (nombrePrograma, tipo, descripcion, duracion) VALUES ('$nombrePrograma', '$tipo', '$descripcion', '$duracion')";
 $resultado = mysqli_query($conexion, $consulta);
 
 if ($resultado) {
 
-    header("Location: listado_mentores.php");
+    header("Location: listado_programas.php");
 } else {
     echo "No se ha podido insertar";
 }
