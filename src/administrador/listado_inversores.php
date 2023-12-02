@@ -30,7 +30,8 @@ for ($i = 0; $i < $numero_filas; $i++) {
     for ($j = 0; $j < $numero_columnas; $j++) {
         echo "<td>" . $fila[$j] . "</td>";
     }
-    echo "<td><form action='eliminar_nversor.php' method='post'><input type='hidden' name='idInversor' value='" . $fila[0] . "'><input type='submit' value='Eliminar'></form></td>";
+    echo "<td><form action='eliminar_inversor.php' method='post'><input type='hidden' name='idInversor' value='" . $fila[0] . "'><input type='submit' value='Eliminar'></form></td>";
+    echo "<td><form action='actualizar_inversor.php' method='post'><input type='hidden' name='idInversor' value='" . $fila[0] . "'><input type='submit' value='Actualizar'></form></td>";
 
     echo "</tr>";
 }
