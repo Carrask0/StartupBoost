@@ -72,7 +72,9 @@ CREATE TABLE Startup(
     estado VARCHAR(50) NOT NULL,
     correo VARCHAR(50) NOT NULL,
     tlf VARCHAR(50) NOT NULL,
+    idMentor INT,
     PRIMARY KEY(idStartup)
+    FOREIGN KEY(idMentor) REFERENCES Mentor(idMentor) ON DELETE SET NULL
 );
 CREATE TABLE Mentor(
     idMentor INT NOT NULL AUTO_INCREMENT,
