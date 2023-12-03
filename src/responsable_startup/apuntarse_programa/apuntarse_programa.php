@@ -9,13 +9,13 @@ $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
     or die("No se ha podido conectar con la base de datos");
 
 $idPrograma = $_GET['idPrograma'];
-$idStartup = $_SESSION['idStartup'];
+$idStartup = $_SESSION['id'];
 
 $consulta = "INSERT INTO Programa_startup VALUES ('$idPrograma', '$idStartup')";
 $resultado = mysqli_query($conexion, $consulta);
 
 if ($resultado) {
-    header("Location: /../opciones_startup.html");
+    header("Location: listado_programas.php");
 } else {
-    echo "No se ha podido eliminar";
+    echo "No se ha podido apuntar";
 }
