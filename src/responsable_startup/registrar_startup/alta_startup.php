@@ -29,7 +29,7 @@ if ($numero_filas > 0) {
     $resultado = mysqli_query($conexion, $consulta);
 
     if ($resultado) {
-        echo "Se ha insertado correctamente <br>";
+        header("Location: ../opciones_responsable_startup.html");
     } else {
         echo "No se ha podido insertar <br>";
     }

@@ -30,8 +30,17 @@ for ($i = 0; $i < $numero_filas; $i++) {
     for ($j = 0; $j < $numero_columnas; $j++) {
         echo "<td>" . $fila[$j] . "</td>";
     }
-    echo "<td><a href='form_validar_startup.html?idStartup=" . $fila[0] . "'>Validar</a></td>";
-
+    //Pass all parameters in the URL
+    $parameters = array(
+        'idStartup' => $fila[0],
+        'nombreStartup' => $fila[1],
+        'descripcion' => $fila[2],
+        'sector' => $fila[3],
+        'estado' => $fila[4],
+        'correo' => $fila[5],
+        'tlf' => $fila[6]
+    );
+    echo "<td><a href='form_validar_startup.html?" . http_build_query($parameters) . "'>Validar</a></td>";
     echo "</tr>";
 }
 echo "</table>";
