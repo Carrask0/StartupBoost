@@ -88,13 +88,6 @@ CREATE TABLE Inversor_Evento(
     FOREIGN KEY(idInversor) REFERENCES Inversor(idInversor),
     FOREIGN KEY(idEvento) REFERENCES Evento(idEvento)
 );
-CREATE TABLE Mentor_Evento(
-    idMentor INT NOT NULL,
-    idEvento INT NOT NULL,
-    PRIMARY KEY(idMentor, idEvento),
-    FOREIGN KEY(idMentor) REFERENCES Mentor(idMentor),
-    FOREIGN KEY(idEvento) REFERENCES Evento(idEvento)
-);
 
 CREATE TABLE Convocatoria (
     idConvocatoria INT PRIMARY KEY AUTO_INCREMENT,
