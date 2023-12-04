@@ -34,7 +34,7 @@
     
     */
 
-    $nombresTablas = array("Evento", "Evento_Mentor", "Inversion", "Inversor", "Inversor_Evento", "Mentor", "Programa", "Programa_startup", "Startup", "Startup_Evento", "Subvencion");
+    $nombresTablas = array("Evento", "Evento_Mentor", "Inversion", "Inversor", "Inversor_Evento", "Mentor", "Programa", "Programa_startup", "Startup", "Startup_Evento", "Subvencion", "Convocatoria", "SesionMentoria", "Evaluacion");
 
     foreach ($nombresTablas as $nombreTabla) {
         $consulta = "SELECT * FROM $nombreTabla";
