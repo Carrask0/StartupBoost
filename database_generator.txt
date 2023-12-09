@@ -61,7 +61,7 @@ CREATE TABLE Startup(
     correo VARCHAR(50) NOT NULL,
     tlf VARCHAR(50) NOT NULL,
     idMentor INT,
-    PRIMARY KEY(idStartup)
+    PRIMARY KEY(idStartup),
     FOREIGN KEY(idMentor) REFERENCES Mentor(idMentor) ON DELETE SET NULL
 );
 CREATE TABLE Mentor(
