@@ -1,17 +1,5 @@
 Database Template
 
-Programa=@idPrograma+nombrePorgrama+tipo+descripcion+duración
-Programa-startup=@idPrograma+@idStartup
-Inversion=@idStartup+@idInversor+cantidad
-Inversor=@idInversor+nombreInversor+correo+tlf
-Evento=@idEvento+nombreEvento+tipo+descripcion+fechaIni+fechaFin+plazas+ubicacion+sala
-StartUp=@idStartup+nombreStartup+descripcion+sector+estado+correo+tlf
-Mentor=@idMentor+nombreMentor+especialidad+experiencia+correo+tlf
-Subvencion=@idSubvencion+entSubvencionadora+estado+cantidad
-Startup-Evento=@idStartup+@idEvento
-Inversor-Evento=@idInversor + @idEvento
-Mentor-Evento=@idEvento + @idMentor
-
 SQL Configuration Commands
 Entrar en MySQL: mysql -u root 
 Crear base de datos: CREATE DATABASE startupBoost;
@@ -85,13 +73,7 @@ CREATE TABLE Mentor(
     tlf VARCHAR(50) NOT NULL,
     PRIMARY KEY(idMentor)
 );
-CREATE TABLE Subvencion(
-    idSubvencion INT NOT NULL AUTO_INCREMENT,
-    entSubvencionadora VARCHAR(50) NOT NULL,
-    estado VARCHAR(50) NOT NULL,
-    cantidad INT NOT NULL,
-    PRIMARY KEY(idSubvencion)
-);
+
 CREATE TABLE Startup_Evento(
     idStartup INT NOT NULL,
     idEvento INT NOT NULL,
@@ -106,11 +88,39 @@ CREATE TABLE Inversor_Evento(
     FOREIGN KEY(idInversor) REFERENCES Inversor(idInversor),
     FOREIGN KEY(idEvento) REFERENCES Evento(idEvento)
 );
-CREATE TABLE Mentor_Evento(
-    idMentor INT NOT NULL,
-    idEvento INT NOT NULL,
-    PRIMARY KEY(idMentor, idEvento),
-    FOREIGN KEY(idMentor) REFERENCES Mentor(idMentor),
-    FOREIGN KEY(idEvento) REFERENCES Evento(idEvento)
+
+CREATE TABLE Convocatoria (
+    idConvocatoria INT PRIMARY KEY AUTO_INCREMENT,
+    fechaIniConvocatoria DATE NOT NULL,
+    fechaFinConvocatoria DATE NOT NULL,
+    descripcion VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE Subvencion (
+    idConvocatoria INT,
+    idStartup INT,
+    Cantidad DECIMAL(10, 2) NOT NULL,
+    fechaConcesion DATE,
+    PRIMARY KEY (idConvocatoria, idStartup),
+    FOREIGN KEY (idConvocatoria) REFERENCES Convocatoria(idConvocatoria),
+    FOREIGN KEY (idStartup) REFERENCES Startup(idStartup)
+);
+
+CREATE TABLE Evaluacion (
+    idEvaluacion INT PRIMARY KEY AUTO_INCREMENT,
+    comentario VARCHAR(255),
+    resultado VARCHAR(50),
+    idStartup INT,
+    FOREIGN KEY (idStartup) REFERENCES Startup(idStartup) 
+);
+
+CREATE TABLE SesionMentoria (
+    idSesion INT PRIMARY KEY AUTO_INCREMENT,
+    fechaSesion DATE,
+    objetivos VARCHAR(255),
+    resultado VARCHAR(50),
+    idStartup INT,
+    FOREIGN KEY (idStartup) REFERENCES Startup(idStartup) 
+);
+
 
