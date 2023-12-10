@@ -126,6 +126,7 @@ input {
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 20px;
+    color: var(--color-texto);
 }
 
 input[type="submit"] {
@@ -184,5 +185,6 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 25px;
+    color: var(--color-texto);
 }
 
