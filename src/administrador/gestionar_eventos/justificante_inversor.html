@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justificante de Inscripción</title>
+    <link rel="stylesheet" href="/../../../styles.css">
+</head>
+<body>
+    <h1>Justificante de Inscripción</h1>
+    <p>Inversor con ID: <span id="idInversor"></span> inscrito en el evento con ID: <span id="idEvento"></span>.</p>
+    <button onclick="enviarCorreo()">Enviar por Correo</button>
+    <script>
+        function obtenerParametros() {
+            const params = new URLSearchParams(window.location.search);
+            document.getElementById('idInversor').textContent = params.get('idInversor');
+            document.getElementById('idEvento').textContent = params.get('idEvento');
+        }
+
+        function enviarCorreo() {
+            // Aquí puedes agregar código JS para enviar el correo
+        }
+
+        window.onload = obtenerParametros;
+    </script>
+</body>
+</html>

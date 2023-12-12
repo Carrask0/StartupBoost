@@ -16,7 +16,9 @@ $consulta = "INSERT INTO Inversor_Evento (idEvento, idInversor) VALUES ('$idEven
 $resultado = mysqli_query($conexion, $consulta);
 
 if ($resultado) {
-    header("Location: listado_eventos.php");
+    $url = "justificante_inversor.html?idInversor=$idInversor&idEvento=$idEvento";
+    header("Location: $url");
+    //header("Location: listado_eventos.php");
 } else {
     echo "No se ha podido insertar";
 }

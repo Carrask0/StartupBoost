@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StartupBoost</title>
+    <link rel="stylesheet" href="/../../styles.css">
+</head>
+<body>
+    
+    <h1>Opciones de startup</h1>
+
+    <div class="listadoOpciones">
+        <button onclick="redirect('./registrar_startup/form_intro_datos_startup.html')" class="opcion">Registrar startup</button>
+        <button onclick="redirect('./apuntarse_programa/listado_programas.php')" class="opcion">Consultar programas</button>
+        <button onclick="redirect('listado_sesiones.php')" class="opcion">Consultar sesiones de mentoria</button>
+        <button onclick="redirect('listado_evaluaciones.php')" class="opcion">Consultar evaluaciones</button>
+        <button onclick="redirect('subvenciones/listado_convocatorias.php')" class="opcion">Consultar subvenciones</button>
+    </div>
+    
+
+    <script>
+
+        function redirect(page) {
+            window.location.href = page;
+        }
+
+    </script>
+</body>
+</html>
