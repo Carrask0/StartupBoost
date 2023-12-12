@@ -10,6 +10,12 @@ $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
 
 //Eliminar el inversor
 $idInversor = $_GET['idInversor'];
+
+// Primero, eliminar las referencias en la tabla Inversor_Evento
+$consultaEliminarReferencias = "DELETE FROM Inversor_Evento WHERE idInversor = '$idInversor'";
+$resultadoReferencias = mysqli_query($conexion, $consultaEliminarReferencias);
+
+// Ahora, eliminar el inversor de la tabla Inversor
 $consulta = "DELETE FROM Inversor WHERE idInversor = '$idInversor'";
 $resultado = mysqli_query($conexion, $consulta);
 
