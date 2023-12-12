@@ -8,7 +8,6 @@
 </head>
 <body>
     <h1>Formulario registro mentor</h1>
-
     
     <form action="./alta_mentor.php" method="post" id="formRegistroMentor"
         display="flex"
@@ -31,6 +30,20 @@
         <input type="submit" value="Enviar">
         
     </form>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var errores = urlParams.get('error');
+            console.log("Errores:", errores);
+            if (errores) {
+                alert("Error: " + errores);
+            }
+        });
+
+
+    </script>
 
 </body>
 </html>

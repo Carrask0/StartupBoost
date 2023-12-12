@@ -10,7 +10,6 @@
 <body>
     <h1>Formulario registro startup</h1>
 
-    
     <form action="alta_startup.php" method="post"
         display="flex"
         >
@@ -31,6 +30,18 @@
 
         <input type="submit" value="Enviar">
     </form>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var errores = urlParams.get('error');
+            if (errores) {
+                alert("Error: " + errores);
+            }
+        });
+
+    </script>
 
 </body>
 </html>

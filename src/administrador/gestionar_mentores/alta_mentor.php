@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 require_once __DIR__ . '/../../../config.php';
@@ -15,13 +14,53 @@ $experiencia = $_POST['experiencia'];
 $correo = $_POST['correo'];
 $telefono = $_POST['tlf'];
 
-//Insertar los datos en la base de datos
-$consulta = "INSERT INTO Mentor (nombreMentor, especialidad, experiencia, correo, tlf) VALUES ('$nombre', '$especialidad', '$experiencia', '$correo', '$telefono')";
-$resultado = mysqli_query($conexion, $consulta);
+function validarDatos($nombre, $especialidad, $experiencia, $correo, $telefono) {
+    $errores = [];
 
-if ($resultado) {
+    // Verificar que los campos no estén vacíos
+    if (empty($nombre) || empty($especialidad) || empty($experiencia) || empty($correo) || empty($telefono)) {
+        $errores = "Todos los campos son obligatorios.";
+    }
 
-    header("Location: listado_mentores.php");
+    // Verificar formato de correo electrónico con expresión regular
+    if (!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $correo)) {
+        $errores = "El formato del correo electrónico no es válido.";
+    }
+
+    // Verificar formato de número de teléfono (solo números y al menos 9 dígitos)
+    if (!preg_match('/^\d{9,}$/', $telefono)) {
+        $errores = "El formato del número de teléfono no es válido.";
+    }
+
+    // Si hay errores, se devuelve el array
+    if (!empty($errores)) {
+        return $errores;
+    }
+    
+    // Si pasa todas las validaciones
+    return null;
+}
+
+$validacion = validarDatos($nombre, $especialidad, $experiencia, $correo, $telefono);
+
+if ($validacion == null) {
+
+    //Insertar los datos en la base de datos
+    $consulta = "INSERT INTO Mentor (nombreMentor, especialidad, experiencia, correo, tlf) VALUES ('$nombre', '$especialidad', '$experiencia', '$correo', '$telefono')";
+    $resultado = mysqli_query($conexion, $consulta);
+
+    if ($resultado) {
+
+        header("Location: listado_mentores.php");
+    } else {
+        $error ="No se ha podido insertar.";
+        header("Location: form_intro_datos_mentor.html?error=$error");
+        exit();
+    }
+
 } else {
-    echo "No se ha podido insertar";
+    // Mostrar errores
+    $error = $validacion;
+    header("Location: form_intro_datos_mentor.html?error=$error");
+    exit();
 }
