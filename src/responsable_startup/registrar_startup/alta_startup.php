@@ -4,6 +4,7 @@ session_start();
 
 require_once __DIR__ . '/../../../config.php';
 
+
 //Conectar con la base de datos
 $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
     or die("No se ha podido conectar con la base de datos");
@@ -16,19 +17,6 @@ $descripcion = $_POST['descripcion'];
 $correo = $_POST['correo'];
 $telefono = $_POST['telefono'];
 $estado = "pendiente";
-
-
-$id = $_SESSION['id'];
-
-// Si la startup existe no se hace nada
-$consulta = "SELECT * FROM Startup WHERE idStartup = '$id'";
-$resultado = mysqli_query($conexion, $consulta);
-$numero_filas = mysqli_num_rows($resultado);
-
-if ($numero_filas > 0) {
-    header("Location: ../opciones_startup.html");
-    exit();
-}
 
 function validarDatos($nombre, $sector, $descripcion, $correo, $telefono)
 {
@@ -67,28 +55,30 @@ if ($validacion !== null) {
     exit();
 } else {
 
-    //Comprobar que no exista ya una startup con ese nombre
+    //Comprobar no existe una startup con el mismo nombre
     $consulta = "SELECT * FROM Startup WHERE nombreStartup = '$nombre'";
     $resultado = mysqli_query($conexion, $consulta);
-    $numero_filas = mysqli_num_rows($resultado);
-
-    if ($numero_filas > 0) {
-
+    $numFilas = mysqli_num_rows($resultado);
+    if ($numFilas > 0) {
         $error = "Ya existe una startup con ese nombre.";
         header("Location: form_intro_datos_startup.html?error=$error");
         exit();
+    }
+
+    //Insertar los datos en la base de datos
+    $consulta = "INSERT INTO Startup (nombreStartup, descripcion, sector, estado, correo, tlf) VALUES ('$nombre', '$descripcion', '$sector', '$estado', '$correo', '$telefono')";
+    $resultado = mysqli_query($conexion, $consulta);
+
+    if ($resultado) {
+        // Get the id of the inserted startup
+        $id = mysqli_insert_id($conexion);
+        $_SESSION['id'] = $id;
+        $_SESSION['tipoUsuario'] = 'responsable_startup';
+        $mensaje = "Startup registrada correctamente.";
+        header("Location: ../opciones_startup.html?mensaje=$mensaje");
     } else {
-
-        //Insertar los datos en la base de datos
-        $consulta = "INSERT INTO Startup (nombreStartup, descripcion, sector, estado, correo, tlf) VALUES ('$nombre', '$descripcion', '$sector', '$estado', '$correo', '$telefono')";
-        $resultado = mysqli_query($conexion, $consulta);
-
-        if ($resultado) {
-            header("Location: ../opciones_startup.html");
-        } else {
-            $error = "No se ha podido insertar.";
-            header("Location: form_intro_datos_startup.html?error=$error");
-            exit();
-        }
+        $error = "No se ha podido insertar.";
+        header("Location: form_intro_datos_startup.html?error=$error");
+        exit();
     }
 }
