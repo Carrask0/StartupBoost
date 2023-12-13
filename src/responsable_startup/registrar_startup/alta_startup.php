@@ -32,7 +32,7 @@ if ($numero_filas > 0) {
 
 function validarDatos($nombre, $sector, $descripcion, $correo, $telefono)
 {
-    $errores = [];
+    $errores = "";
 
     // Verificar que los campos no estén vacíos
     if (empty($nombre) || empty($sector) || empty($descripcion) || empty($correo) || empty($telefono)) {

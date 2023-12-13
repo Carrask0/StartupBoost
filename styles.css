@@ -109,9 +109,34 @@ hr{
     transition: background-color 0.3s ease;
 }
 
-.opcion:hover {
+.opcion:hover, .boton-registro:hover {
     background-color: var(--color-boton-hover);
     color: var(--color-titulo);
+}
+
+.boton-registro {
+    display: block;
+    width: 50%;
+    padding: 20px;
+    margin-bottom: 10px; 
+    text-align: center;
+    margin: 10px auto;
+    font-size: 25px; 
+    font-weight: bold;
+    background-color:transparent;
+    color: var(--color-texto);
+    border-radius: 35px;
+    border: var(--color-primario) 2px solid;
+    box-shadow: 0 0 10px var(--color-primario);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.container-box {
+    display: "flex";
+    flex-direction: "row";
+    justify-content: "center";
+    margin: 20;
 }
 
 /* Seleccion de usuarios (desplegable) */
