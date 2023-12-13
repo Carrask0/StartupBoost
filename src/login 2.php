@@ -16,9 +16,11 @@ switch ($tipoUsuario) {
         header("Location: administrador/opciones_administrador.html");
         break;
     case 'responsable_startup':
-        $consulta = "SELECT * FROM Startup WHERE idStartup = '$idUsuario'";
+        $consulta = "INSERT INTO Startup VALUES ('$idUsuario')";
+        $consulta2 = "SELECT * FROM Startup WHERE idStartup = '$idUsuario'";
         $resultado = mysqli_query($conexion, $consulta);
-        $numFilas = mysqli_num_rows($resultado);
+        $resultado2 = mysqli_query($conexion, $consulta2);
+        $numFilas = mysqli_num_rows($resultado2);
         if ($numFilas > 0) {
             $_SESSION['id'] = $idUsuario;
             $_SESSION['tipoUsuario'] = $tipoUsuario;
