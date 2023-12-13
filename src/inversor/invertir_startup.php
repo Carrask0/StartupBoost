@@ -3,6 +3,7 @@
 session_start();
 
 require_once __DIR__ . '/../../config.php';
+require_once __DIR__ . '/auth_inversor.php';
 
 //Conectar con la base de datos
 $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)

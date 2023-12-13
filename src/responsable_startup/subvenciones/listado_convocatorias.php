@@ -3,6 +3,7 @@
 session_start();
 
 require_once __DIR__ . '/../../../config.php';
+require_once __DIR__ . '/../auth_responsable_startup.php';
 echo " <link rel='stylesheet' href='/../../../styles.css'>";
 
 //Conectar con la base de datos
@@ -14,7 +15,10 @@ $consulta = "SELECT * FROM Convocatoria";
 $resultado = mysqli_query($conexion, $consulta);
 
 echo "<h1 class='titulo'>Convocatorias</h1>";
-echo("<hr class='hr4'>");
+echo ("<hr class='hr4'>");
+if (mysqli_num_rows($resultado) == 0) {
+    echo "<p>No hay convocatorias disponibles</p>";
+}
 //Mostrar todas las convocatorias, y si la startup no está inscrita, mostrar un botón para inscribirse
 $idStartup = $_SESSION['id'];
 echo "<table>";

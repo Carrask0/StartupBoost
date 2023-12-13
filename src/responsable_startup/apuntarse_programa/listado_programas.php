@@ -3,6 +3,7 @@
 session_start();
 
 require_once __DIR__ . '/../../../config.php';
+require_once __DIR__ . '/../auth_responsable_startup.php';
 echo " <link rel='stylesheet' href='/../../../styles.css'>";
 
 //Conectar con la base de datos
@@ -18,7 +19,7 @@ $num_filas = mysqli_num_rows($resultado);
 echo "<h1 class='titulo'>Programas</h1>";
 echo "<hr class='hr4'>";
 if ($num_filas == 0) {
-    echo "No hay programas disponibles";
+    echo "<p>No hay programas disponibles</p>";
     exit();
 }
 echo "<table>";
@@ -38,3 +39,5 @@ while ($fila = mysqli_fetch_array($resultado)) {
     echo "<td><a href='apuntarse_programa.php?idPrograma=" . $fila['idPrograma'] . "'>Apuntarse</a></td>";
     echo "</tr>";
 }
+
+echo "</table>";

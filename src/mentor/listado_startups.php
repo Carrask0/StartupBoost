@@ -3,6 +3,7 @@
 session_start();
 
 require_once __DIR__ . '/../../config.php';
+require_once __DIR__ . '/auth_mentor.php';
 echo " <link rel='stylesheet' href='/../../../styles.css'>";
 
 //Conectar con la base de datos

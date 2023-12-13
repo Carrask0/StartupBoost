@@ -3,6 +3,8 @@
 session_start();
 
 require_once __DIR__ . '/../../config.php';
+require_once __DIR__ . '/auth_responsable_startup.php';
+echo " <link rel='stylesheet' href='/../../styles.css'>";
 
 //Conectar con la base de datos
 $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
@@ -15,11 +17,14 @@ $consulta = "SELECT * FROM Evaluacion WHERE idStartup = '$idStartup'";
 $resultado = mysqli_query($conexion, $consulta);
 
 echo "<h1 class='titulo'>Evaluaciones</h1>";
-echo("<hr class='hr2'>");
+echo ("<hr class='hr2'>");
 //Mostrar todas las evaluaciones
 while ($fila = mysqli_fetch_array($resultado)) {
     echo "<h2>Evaluacion: " . $fila['idEvaluacion'] . "</h2>";
     echo "<p>Comentario: " . $fila['comentario'] . "</p>";
     echo "<p>Resultado: " . $fila['resultado'] . "</p>";
     echo "<br>";
+}
+if (mysqli_num_rows($resultado) == 0) {
+    echo "<p>No hay evaluaciones registradas</p>";
 }
