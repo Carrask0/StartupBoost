@@ -3,6 +3,7 @@
 session_start();
 
 require_once __DIR__ . '/../../../config.php';
+require_once __DIR__ . '/../auth_administrador.php';
 
 //Conectar con la base de datos
 $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
@@ -14,7 +15,8 @@ $nombreInversor = $_POST['nombreInversor'];
 $correo = $_POST['correo'];
 $tlf = $_POST['tlf'];
 
-function validarDatos($nombreInversor, $correo, $tlf) {
+function validarDatos($nombreInversor, $correo, $tlf)
+{
     $errores = [];
 
     // Verificar que los campos no estén vacíos
@@ -31,7 +33,7 @@ function validarDatos($nombreInversor, $correo, $tlf) {
     if (!preg_match('/^\d{9,}$/', $tlf)) {
         $errores = "El formato del número de teléfono no es válido.";
     }
-    
+
     // Si hay errores, se devuelve el array
     if (!empty($errores)) {
         return $errores;
@@ -47,19 +49,16 @@ if ($validacion !== null) {
     $error = $validacion;
     header("Location: form_intro_datos_inversor.html?error=$error");
     exit();
-
 } else {
-        // Insertar los datos en la base de datos
-        $consulta = "INSERT INTO Inversor (nombreInversor, correo, tlf) VALUES ('$nombreInversor', '$correo', '$tlf')";
-        $resultado = mysqli_query($conexion, $consulta);
+    // Insertar los datos en la base de datos
+    $consulta = "INSERT INTO Inversor (nombreInversor, correo, tlf) VALUES ('$nombreInversor', '$correo', '$tlf')";
+    $resultado = mysqli_query($conexion, $consulta);
 
-        if ($resultado) {
-            header("Location: listado_inversores.php");
-        } else {
-            $error = "No se ha podido insertar.";
-            header("Location: form_intro_datos_inversor.html?error=$error");
-            exit();
-        }
+    if ($resultado) {
+        header("Location: listado_inversores.php");
+    } else {
+        $error = "No se ha podido insertar.";
+        header("Location: form_intro_datos_inversor.html?error=$error");
+        exit();
+    }
 }
-
-?>

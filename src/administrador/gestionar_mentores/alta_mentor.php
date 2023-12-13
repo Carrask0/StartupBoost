@@ -2,6 +2,7 @@
 session_start();
 
 require_once __DIR__ . '/../../../config.php';
+require_once __DIR__ . '/../auth_administrador.php';
 
 //Conectar con la base de datos
 $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
@@ -14,7 +15,8 @@ $experiencia = $_POST['experiencia'];
 $correo = $_POST['correo'];
 $telefono = $_POST['tlf'];
 
-function validarDatos($nombre, $especialidad, $experiencia, $correo, $telefono) {
+function validarDatos($nombre, $especialidad, $experiencia, $correo, $telefono)
+{
     $errores = [];
 
     // Verificar que los campos no estén vacíos
@@ -36,7 +38,7 @@ function validarDatos($nombre, $especialidad, $experiencia, $correo, $telefono) 
     if (!empty($errores)) {
         return $errores;
     }
-    
+
     // Si pasa todas las validaciones
     return null;
 }
@@ -53,11 +55,10 @@ if ($validacion == null) {
 
         header("Location: listado_mentores.php");
     } else {
-        $error ="No se ha podido insertar.";
+        $error = "No se ha podido insertar.";
         header("Location: form_intro_datos_mentor.html?error=$error");
         exit();
     }
-
 } else {
     // Mostrar errores
     $error = $validacion;

@@ -3,6 +3,7 @@
 session_start();
 
 require_once __DIR__ . '/../../../config.php';
+require_once __DIR__ . '/../auth_administrador.php';
 echo " <link rel='stylesheet' href='/../../../styles.css'>";
 
 //Conectar con la base de datos
@@ -18,7 +19,7 @@ $numero_filas = mysqli_num_rows($resultado);
 $numero_columnas = mysqli_num_fields($resultado);
 
 echo "<h1 class='titulo'>Mentores</h1>";
-echo("<hr class='hr4'>");
+echo ("<hr class='hr4'>");
 echo "<table><tr>";
 for ($i = 0; $i < $numero_columnas; $i++) {
     $nombreColumna = mysqli_fetch_field_direct($resultado, $i)->name;

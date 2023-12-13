@@ -3,6 +3,7 @@
 session_start();
 
 require_once __DIR__ . '/../../../config.php';
+require_once __DIR__ . '/../auth_administrador.php';
 
 //Conectar con la base de datos
 $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
@@ -14,9 +15,10 @@ $tipo = $_POST['tipo'];
 $descripcion = $_POST['descripcion'];
 $duracion = $_POST['duracion'];
 
-function validarDatos($nombrePrograma, $tipo, $descripcion, $duracion) {
+function validarDatos($nombrePrograma, $tipo, $descripcion, $duracion)
+{
     $errores = [];
-    
+
     // Verificar que los campos no estén vacíos
     if (empty($nombrePrograma) || empty($tipo) || empty($descripcion) || empty($duracion)) {
         return $errores = "Todos los campos son obligatorios.";
@@ -24,14 +26,13 @@ function validarDatos($nombrePrograma, $tipo, $descripcion, $duracion) {
     return null;
 }
 
-$validacion= validarDatos($nombrePrograma, $tipo, $descripcion, $duracion);
+$validacion = validarDatos($nombrePrograma, $tipo, $descripcion, $duracion);
 
-if($validacion !== null){
+if ($validacion !== null) {
     $error = $validacion;
     header("Location: form_intro_datos_programa.html?error=$error");
     exit();
-
-}else{
+} else {
 
     //Insertar los datos en la base de datos
     $consulta = "INSERT INTO Programa (nombrePrograma, tipo, descripcion, duracion) VALUES ('$nombrePrograma', '$tipo', '$descripcion', '$duracion')";
@@ -40,8 +41,8 @@ if($validacion !== null){
     if ($resultado) {
         header("Location: listado_programas.php");
     } else {
-            $error = "No se ha podido insertar.";
-            header("Location: form_intro_datos_startup.html?error=$error");
-            exit();
+        $error = "No se ha podido insertar.";
+        header("Location: form_intro_datos_startup.html?error=$error");
+        exit();
     }
 }

@@ -4,6 +4,7 @@
 session_start();
 
 require_once __DIR__ . '/../../../config.php';
+require_once __DIR__ . '/../auth_administrador.php';
 
 //Conectar con la base de datos
 $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
@@ -16,12 +17,13 @@ $nombreInversor = $_POST['nombreInversor'];
 $correo = $_POST['correo'];
 $tlf = $_POST['tlf'];
 
-function validarDatos($nombreInversor, $correo, $tlf) {
+function validarDatos($nombreInversor, $correo, $tlf)
+{
     $errores = [];
 
     // Verificar que los campos no estén vacíos
     if (empty($nombreInversor) || empty($correo) || empty($tlf)) {
-        echo("Todos los campos son obligatorios.");
+        echo ("Todos los campos son obligatorios.");
     }
 
     // Verificar formato de correo electrónico con expresión regular
@@ -31,9 +33,9 @@ function validarDatos($nombreInversor, $correo, $tlf) {
 
     // Verificar formato de número de teléfono (solo números y al menos 9 dígitos)
     if (!preg_match('/^\d{9,}$/', $tlf)) {
-        echo("El formato del número de teléfono no es válido.");
+        echo ("El formato del número de teléfono no es válido.");
     }
-    
+
     // Si hay errores, se devuelve el array
     if (!empty($errores)) {
         return $errores;

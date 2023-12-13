@@ -14,6 +14,12 @@ $cantidad = $_POST['cantidad'];
 //Fecha actual
 $fechaConcesion = date("Y-m-d");
 
+if ($cantidad <= 0) {
+    $error = "La cantidad debe ser mayor que 0";
+    header("Location: form_subvencion.html?error=$error");
+    exit();
+}
+
 //Insertar los datos en la base de datos
 $consulta = "INSERT INTO Subvencion (idStartup, idConvocatoria, cantidad, fechaConcesion) VALUES ('$idStartup', '$idConvocatoria', '$cantidad', '$fechaConcesion')";
 $resultado = mysqli_query($conexion, $consulta);
