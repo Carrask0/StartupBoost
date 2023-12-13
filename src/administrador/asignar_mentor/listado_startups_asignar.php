@@ -41,7 +41,7 @@ while ($fila = mysqli_fetch_array($resultado)) {
     echo "<td>" . $fila['estado'] . "</td>";
     echo "<td>" . $fila['correo'] . "</td>";
     echo "<td>" . $fila['tlf'] . "</td>";
-    echo "<td><a href='form_asignar_mentor.html?idMentor=" . $idMentor . "&idStartup=" . $fila['idStartup'] . "'>Asignar</a></td>";
+    echo "<td><a href='form_asignar_mentor.html?idMentor=" . $idMentor . "&idStartup=" . $fila['idStartup'] . "' class='boton-estilo'>Asignar</a></td>";
     echo "</tr>";
 }
 echo "</table>";

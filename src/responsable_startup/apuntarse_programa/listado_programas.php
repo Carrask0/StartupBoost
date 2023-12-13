@@ -15,7 +15,8 @@ $consulta = "SELECT * FROM Programa WHERE idPrograma NOT IN (SELECT idPrograma F
 $resultado = mysqli_query($conexion, $consulta);
 
 $num_filas = mysqli_num_rows($resultado);
-echo "<h1>Programas</h1>";
+echo "<h1 class='titulo'>Programas</h1>";
+echo "<hr class='hr4'>";
 if ($num_filas == 0) {
     echo "No hay programas disponibles";
     exit();

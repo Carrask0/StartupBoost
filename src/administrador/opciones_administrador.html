@@ -6,25 +6,32 @@
     <title>StartupBoost</title>
     <link rel="stylesheet" href="/../../styles.css">
 </head>
-<body>
+<body class="degradado">
     
-    <h1>Opciones de administrador</h1>
+    <h1 class="tituloDegradado">Opciones de administrador</h1>
+    <hr>
 
     <div class="listadoOpciones">
-        <h2>Registros</h2>
+        <h2 class="tituloDegradado">Registros</h2>
         <button onclick="redirect('gestionar_mentores/form_intro_datos_mentor.html')" class="opcion">Nuevo mentor</button>
         <button onclick="redirect('gestionar_inversores/form_intro_datos_inversor.html')" class="opcion">Nuevo inversor</button>
         <button onclick="redirect('gestionar_programas/form_intro_datos_programa.html')" class="opcion">Nuevo programa</button>
         <button onclick="redirect('gestionar_eventos/form_nuevo_evento.html')" class="opcion">Nuevo evento</button>
-        <h2>Listados</h2>
+        <hr class="hr3">
+        <h2 class="tituloDegradado">Listados</h2>
         <button onclick="redirect('gestionar_mentores/listado_mentores.php')" class="opcion">Mentores</button>
         <button onclick="redirect('gestionar_inversores/listado_inversores.php')" class="opcion">Inversores</button>
         <button onclick="redirect('gestionar_programas/listado_programas.php')" class="opcion">Programas</button>
-        <h2>Gestion de startups</h2>
+        <hr class="hr3">
+        <h2 class="tituloDegradado">Gestion de startups</h2>
         <button onclick="redirect('validar_startup/listado_startups_validar.php')" class="opcion">Validar startups</button>
         <button onclick="redirect('asignar_mentor/listado_mentores_asignar.php')" class="opcion">Asignar mentor</button>
     </div>
     
+    <div>
+        <p>Aceleradora de Startups</p> 
+        <p> Ingeniería del Software Web</p>
+     </div>
 
     <script>
         function redirect(page) {

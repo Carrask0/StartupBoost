@@ -17,8 +17,8 @@ $resultado = mysqli_query($conexion, $consulta);
 $numero_filas = mysqli_num_rows($resultado);
 $numero_columnas = mysqli_num_fields($resultado);
 
-echo "<h1>Startups pendientes de validar</h1>";
-echo "<table border='1'><tr>";
+echo "<h1 class='titulo'>Startups pendientes de validar</h1>";
+echo "<table><tr>";
 for ($i = 0; $i < $numero_columnas; $i++) {
     $nombreColumna = mysqli_fetch_field_direct($resultado, $i)->name;
     echo "<th>$nombreColumna</th>";
@@ -40,7 +40,7 @@ for ($i = 0; $i < $numero_filas; $i++) {
         'correo' => $fila[5],
         'tlf' => $fila[6]
     );
-    echo "<td><a href='form_validar_startup.html?" . http_build_query($parameters) . "'>Validar</a></td>";
+    echo "<td><a href='form_validar_startup.html?" . http_build_query($parameters) . "' class='boton-estilo'>Validar</a></td>";
     echo "</tr>";
 }
 echo "</table>";

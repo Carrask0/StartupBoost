@@ -14,7 +14,8 @@ $idStartup = $_SESSION['id'];
 $consulta = "SELECT * FROM SesionMentoria WHERE idStartup = '$idStartup'";
 $resultado = mysqli_query($conexion, $consulta);
 
-echo "<h1>Sesiones de mentoría</h1>";
+echo "<h1 class='titulo'>Sesiones de mentoría</h1>";
+echo("<hr class='hr2'>");
 //Mostrar todas las sesiones
 while ($fila = mysqli_fetch_array($resultado)) {
     echo "<h2>Sesión: " . $fila['idSesionMentoria'] . "</h2>";

@@ -13,7 +13,8 @@ $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
 $consulta = "SELECT * FROM Convocatoria";
 $resultado = mysqli_query($conexion, $consulta);
 
-echo "<h1>Convocatorias</h1>";
+echo "<h1 class='titulo'>Convocatorias</h1>";
+echo("<hr class='hr4'>");
 //Mostrar todas las convocatorias, y si la startup no está inscrita, mostrar un botón para inscribirse
 $idStartup = $_SESSION['id'];
 echo "<table>";

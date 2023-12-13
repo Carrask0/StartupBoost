@@ -18,7 +18,7 @@ $numero_filas = mysqli_num_rows($resultado);
 $numero_columnas = mysqli_num_fields($resultado);
 
 echo "<h1>Startups</h1>";
-echo "<table border='1'><tr>";
+echo "<table><tr>";
 echo "<th>Nombre Startup</th><th>Información</th>"; // Only display Name and Invertir button
 echo "</tr>";
 
