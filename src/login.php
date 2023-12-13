@@ -22,6 +22,11 @@ switch ($tipoUsuario) {
         if (mysqli_num_rows($resultadoExiste) == 0) {
             // Si no existe, insertar la nueva startup
             $consultaInsertar = "INSERT INTO Startup (idStartup) VALUES ('$idUsuario')";
+            $resultado = mysqli_query($conexion, $consultaInsertar);
+            if (!$resultado) {
+                echo "Error al insertar la startup";
+                exit();
+            }
             header("Location: responsable_startup/registrar_startup/form_intro_datos_startup.html");
         }
         // Redirigir o manejar la sesión independientemente de si se insertó o ya existía
