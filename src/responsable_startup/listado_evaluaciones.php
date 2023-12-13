@@ -14,7 +14,8 @@ $idStartup = $_SESSION['id'];
 $consulta = "SELECT * FROM Evaluacion WHERE idStartup = '$idStartup'";
 $resultado = mysqli_query($conexion, $consulta);
 
-echo "<h1>Evaluaciones</h1>";
+echo "<h1 class='titulo'>Evaluaciones</h1>";
+echo("<hr class='hr2'>");
 //Mostrar todas las evaluaciones
 while ($fila = mysqli_fetch_array($resultado)) {
     echo "<h2>Evaluacion: " . $fila['idEvaluacion'] . "</h2>";

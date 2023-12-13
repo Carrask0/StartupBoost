@@ -15,7 +15,8 @@ $resultado = mysqli_query($conexion, $consulta);
 
 $num_filas = mysqli_num_rows($resultado);
 
-echo "<h1>Mentores</h1>";
+echo "<h1 class='titulo'>Mentores</h1>";
+echo("<hr class='hr4'>");
 if ($num_filas == 0) {
     echo "No hay mentores disponibles";
     exit();
@@ -37,6 +38,6 @@ while ($fila = mysqli_fetch_array($resultado)) {
     echo "<td>" . $fila['experiencia'] . "</td>";
     echo "<td>" . $fila['correo'] . "</td>";
     echo "<td>" . $fila['tlf'] . "</td>";
-    echo "<td><a href='listado_startups_asignar.php?idMentor=" . $fila['idMentor'] . "'>Asignar</a></td>";
+    echo "<td><a href='listado_startups_asignar.php?idMentor=" . $fila['idMentor'] . "' class='boton-estilo'>Asignar</a></td>";
     echo "</tr>";
 }

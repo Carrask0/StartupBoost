@@ -16,9 +16,10 @@ $resultado = mysqli_query($conexion, $consulta);
 
 
 $num_filas = mysqli_num_rows($resultado);
-echo "<h1>Startups</h1>";
+echo "<h1 class='titulo'>Startups</h1>";
+echo "<hr class='hr4'>";
 if ($num_filas == 0) {
-    echo "No tiene registrada ninguna startup";
+    echo "<p>No tiene registrada ninguna startup</p>";
     exit();
 }
 echo "<table>";

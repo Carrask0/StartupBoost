@@ -17,8 +17,9 @@ $resultado = mysqli_query($conexion, $consulta);
 $numero_filas = mysqli_num_rows($resultado);
 $numero_columnas = mysqli_num_fields($resultado);
 
-echo "<h1>Mentores</h1>";
-echo "<table border='1'><tr>";
+echo "<h1 class='titulo'>Mentores</h1>";
+echo("<hr class='hr4'>");
+echo "<table><tr>";
 for ($i = 0; $i < $numero_columnas; $i++) {
     $nombreColumna = mysqli_fetch_field_direct($resultado, $i)->name;
     echo "<th>$nombreColumna</th>";
@@ -30,7 +31,7 @@ for ($i = 0; $i < $numero_filas; $i++) {
     for ($j = 0; $j < $numero_columnas; $j++) {
         echo "<td>" . $fila[$j] . "</td>";
     }
-    echo "<td><a href='eliminar_mentor.php?idMentor=" . $fila[0] . "'>Eliminar</a></td>";
+    echo "<td><a href='eliminar_mentor.php?idMentor=" . $fila[0] . "' class='boton-estilo'>Eliminar</a></td>";
     //Pass all parameters in the URL
     $parameters = array(
         'idMentor' => $fila[0],
@@ -40,7 +41,7 @@ for ($i = 0; $i < $numero_filas; $i++) {
         'correo' => $fila[4],
         'tlf' => $fila[5]
     );
-    echo "<td><a href='form_actualizar_mentor.html?" . http_build_query($parameters) . "'>Actualizar</a></td>";
+    echo "<td><a href='form_actualizar_mentor.html?" . http_build_query($parameters) . "' class='boton-estilo'>Actualizar</a></td>";
     echo "</tr>";
 }
 echo "</table>";
