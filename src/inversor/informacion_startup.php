@@ -50,7 +50,7 @@ echo "<td>$estado</td>";
 echo "<td>$correo</td>";
 echo "<td>$tlf</td>";
 if ($invertido) {
-    echo "<td><a href='../../inversor/listado_startups.php'>Ya has invertido en esta startup</a></td>";
+    echo "<td><a href='../inversor/listado_startups.php'>Ya has invertido en esta startup</a></td>";
 } else {
     echo "<td><a href='form_invertir_startup.html?idStartup=$idStartup'>Invertir</a></td>";
 }
