@@ -2,7 +2,6 @@
 session_start();
 
 require_once __DIR__ . '/../../../config.php';
-
 // Autenticación
 $tipoUsuario = $_SESSION['tipoUsuario'];
 if ($tipoUsuario != 'administrador') {
