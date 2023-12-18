@@ -23,7 +23,7 @@ switch ($tipoUsuario) {
         if ($numFilas > 0) {
             $_SESSION['id'] = $idUsuario;
             $_SESSION['tipoUsuario'] = $tipoUsuario;
-            header("Location: responsable_startup/opciones_responsable_startup.html");
+            header("Location: responsable_startup/opciones_startup.html");
         } else {
             header("Location: login_form.html");
         }

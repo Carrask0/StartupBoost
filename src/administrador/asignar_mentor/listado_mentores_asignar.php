@@ -5,6 +5,14 @@ session_start();
 require_once __DIR__ . '/../../../config.php';
 echo " <link rel='stylesheet' href='/../../../styles.css'>";
 
+// Autenticación
+$tipoUsuario = $_SESSION['tipoUsuario'];
+if ($tipoUsuario != 'administrador') {
+    $error = "Error de autenticación";
+    header("Location: ../../login_form.html?error=$error");
+    exit();
+}
+
 //Conectar con la base de datos
 $conexion = mysqli_connect($DB_SERVER, $DB_USER, $DB_PASSWORD, $DB_NAME)
     or die("No se ha podido conectar con la base de datos");
@@ -16,7 +24,7 @@ $resultado = mysqli_query($conexion, $consulta);
 $num_filas = mysqli_num_rows($resultado);
 
 echo "<h1 class='titulo'>Mentores</h1>";
-echo("<hr class='hr4'>");
+echo ("<hr class='hr4'>");
 if ($num_filas == 0) {
     echo "No hay mentores disponibles";
     exit();
